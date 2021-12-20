@@ -5,8 +5,6 @@ Software Engineer
 - Scala
 - Go
 - Python
-- Perl
-- TypeScript
 
 <!--
 **zabio3/zabio3** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
