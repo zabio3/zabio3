@@ -2,8 +2,8 @@
 
 Software Engineer
 
-- Scala
 - Go
+- Scala
 - Python
 - Perl
 
