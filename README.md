@@ -1,25 +1,7 @@
-[![zabio3's github stats](https://github-readme-stats.vercel.app/api?username=zabio3)](https://github.com/zabio3/github-readme-stats)
+![Status](https://img.shields.io/badge/status-available-green)
 
-Software Engineer
+I'm a Software Engineer 👋 
 
-- Go
-- Scala
-- Python
-- Perl
+![zabio3's github top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=zabio3&layout=compact)
 
-<!--
-**zabio3/zabio3** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-![zabio3's github top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=zabio3)
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+![Trophies](https://github-profile-trophy.vercel.app/?username=zabio3)
