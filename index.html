@@ -3,10 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="zabio3 - Software Engineer Portfolio">
     <link rel="icon" href="favicon.ico">
-    <title>zabio3</title>
+    <link rel="stylesheet" href="style.css">
+    <title>zabio3 | Software Engineer</title>
 </head>
 <body>
-    zabio3
+    <div class="terminal">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="terminal-button red"></span>
+                <span class="terminal-button yellow"></span>
+                <span class="terminal-button green"></span>
+            </div>
+            <span class="terminal-title">zabio3@portfolio ~ bash</span>
+        </div>
+        <div class="terminal-body">
+            <!-- ASCII Art Logo -->
+            <pre class="ascii-art">
+███████╗ █████╗ ██████╗ ██╗ ██████╗ ██████╗
+╚══███╔╝██╔══██╗██╔══██╗██║██╔═══██╗╚════██╗
+  ███╔╝ ███████║██████╔╝██║██║   ██║ █████╔╝
+ ███╔╝  ██╔══██║██╔══██╗██║██║   ██║ ╚═══██╗
+███████╗██║  ██║██████╔╝██║╚██████╔╝██████╔╝
+╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝ ╚═════╝ ╚═════╝
+            </pre>
+
+            <!-- whoami command -->
+            <div class="command-line">
+                <span class="prompt">$</span>
+                <span class="command"> whoami</span>
+            </div>
+            <div class="command-output" data-command-delay="300">
+                <span class="output">> Software Engineer</span>
+            </div>
+
+            <!-- cat links.txt command -->
+            <div class="command-line" style="margin-top: 20px;">
+                <span class="prompt">$</span>
+                <span class="command"> cat links.txt</span>
+            </div>
+            <div class="command-output" data-command-delay="600">
+                <div class="links-list">
+                    <a href="https://github.com/zabio3" target="_blank" rel="noopener noreferrer" class="link-item">GitHub</a>
+                    <a href="https://jp.linkedin.com/in/tomohiro-kusumoto-b8b108152" target="_blank" rel="noopener noreferrer" class="link-item">LinkedIn</a>
+                    <a href="https://note.com/zabio3" target="_blank" rel="noopener noreferrer" class="link-item">note</a>
+                    <a href="https://sizu.me/zabio3" target="_blank" rel="noopener noreferrer" class="link-item">sizu.me</a>
+                    <a href="https://x.com/zabio_3" target="_blank" rel="noopener noreferrer" class="link-item">X</a>
+                </div>
+            </div>
+
+            <!-- cd experience command -->
+            <div class="command-line" style="margin-top: 20px;">
+                <span class="prompt">$</span>
+                <span class="command"> cd experience</span>
+            </div>
+            <div class="command-output" data-command-delay="900">
+                <a href="experience.html" class="nav-link">> 経歴を見る <span class="arrow">→</span></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

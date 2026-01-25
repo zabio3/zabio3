@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="zabio3 - 経歴・職歴">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <title>Experience | zabio3</title>
+</head>
+<body>
+    <div class="terminal">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="terminal-button red"></span>
+                <span class="terminal-button yellow"></span>
+                <span class="terminal-button green"></span>
+            </div>
+            <span class="terminal-title">zabio3@portfolio ~/experience</span>
+        </div>
+        <div class="terminal-body">
+            <!-- Back link -->
+            <a href="index.html" class="back-link">$ cd ..</a>
+
+            <!-- ls -la command -->
+            <div class="command-line">
+                <span class="prompt">$</span>
+                <span class="command"> cat experience.log</span>
+            </div>
+
+            <div class="experience-section">
+                <!-- Experience Item 1 -->
+                <div class="experience-item">
+                    <span class="experience-year">2024 - Present</span>
+                    <h3 class="experience-title">Senior Software Engineer</h3>
+                    <p class="experience-company">Example Company Inc.</p>
+                    <p class="experience-desc">
+                        バックエンド開発、インフラ設計、チームリードなど。<br>
+                        技術スタック: Go, Kubernetes, AWS
+                    </p>
+                </div>
+
+                <!-- Experience Item 2 -->
+                <div class="experience-item">
+                    <span class="experience-year">2021 - 2024</span>
+                    <h3 class="experience-title">Software Engineer</h3>
+                    <p class="experience-company">Previous Company Ltd.</p>
+                    <p class="experience-desc">
+                        Webアプリケーション開発、API設計。<br>
+                        技術スタック: Python, Docker, GCP
+                    </p>
+                </div>
+
+                <!-- Experience Item 3 -->
+                <div class="experience-item">
+                    <span class="experience-year">2018 - 2021</span>
+                    <h3 class="experience-title">Junior Engineer</h3>
+                    <p class="experience-company">First Company Corp.</p>
+                    <p class="experience-desc">
+                        新卒入社。フロントエンド・バックエンドの基礎を習得。<br>
+                        技術スタック: JavaScript, Node.js, MySQL
+                    </p>
+                </div>
+            </div>
+
+            <!-- Skills section -->
+            <div class="command-line" style="margin-top: 30px;">
+                <span class="prompt">$</span>
+                <span class="command"> cat skills.txt</span>
+            </div>
+            <div class="command-output" data-command-delay="300">
+                <div class="links-list" style="margin-top: 12px;">
+                    <span class="link-item" style="cursor: default;">Go</span>
+                    <span class="link-item" style="cursor: default;">Python</span>
+                    <span class="link-item" style="cursor: default;">Kubernetes</span>
+                    <span class="link-item" style="cursor: default;">Docker</span>
+                    <span class="link-item" style="cursor: default;">AWS</span>
+                    <span class="link-item" style="cursor: default;">GCP</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
