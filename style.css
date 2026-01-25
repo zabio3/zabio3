@@ -54,6 +54,10 @@ body {
   overflow: hidden;
 }
 
+.terminal.terminal-wide {
+  max-width: 900px;
+}
+
 /* Terminal Header */
 .terminal-header {
   background-color: var(--bg-secondary);
