@@ -299,3 +299,141 @@ body {
 .glow {
   text-shadow: 0 0 10px currentColor;
 }
+
+/* Section Header */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.section-icon {
+  font-size: 1.5rem;
+}
+
+.section-title {
+  color: var(--text-white);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* New Experience Item Style */
+.experience-item-new {
+  margin-bottom: 32px;
+  padding: 20px;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: border-color 0.2s ease;
+}
+
+.experience-item-new:hover {
+  border-color: var(--text-cyan);
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.experience-role {
+  color: var(--text-cyan);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.experience-date {
+  color: var(--text-gray);
+  font-size: 0.85rem;
+  background-color: var(--bg-primary);
+  padding: 2px 10px;
+  border-radius: 12px;
+}
+
+.experience-company-new {
+  color: var(--text-gray);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+/* Experience List */
+.experience-list {
+  list-style: none;
+  margin-bottom: 16px;
+}
+
+.experience-list li {
+  color: var(--text-green);
+  font-size: 0.9rem;
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.experience-list li::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  color: var(--text-cyan);
+}
+
+/* Technology Stack */
+.tech-stack {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-color);
+}
+
+.tech-label {
+  color: var(--text-gray);
+  font-size: 0.8rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-tag {
+  color: var(--text-green);
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border: 1px solid var(--text-green);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.tech-tag:hover {
+  background-color: var(--text-green);
+  color: var(--bg-primary);
+}
+
+/* Responsive for new experience */
+@media (max-width: 480px) {
+  .experience-header {
+    flex-direction: column;
+  }
+
+  .experience-role {
+    font-size: 1rem;
+  }
+
+  .experience-list li {
+    font-size: 0.85rem;
+  }
+
+  .tech-tag {
+    font-size: 0.75rem;
+  }
+}
