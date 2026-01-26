@@ -77,8 +77,20 @@
         .lang-ts { background-color: #3178C6; }
         .lang-java { background-color: #B07219; }
         .lang-kotlin { background-color: #A97BFF; }
+        .lang-android { background-color: #3DDC84; }
         .lang-c { background-color: #555555; }
         .lang-python { background-color: #3572A5; }
+
+        /* Card with image */
+        .work-card-image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1.91 / 1;
+            object-fit: contain;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            background-color: var(--bg-primary);
+        }
 
         .show-more-btn {
             display: block;
@@ -100,6 +112,77 @@
         }
         .hidden {
             display: none;
+        }
+
+        /* Search Section */
+        .search-section {
+            margin-bottom: 24px;
+        }
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+        }
+        .search-box .prompt {
+            color: var(--text-cyan);
+            margin-right: 8px;
+        }
+        .search-box .command {
+            color: var(--text-white);
+        }
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: var(--text-green);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            outline: none;
+            width: 120px;
+        }
+        .search-box input::placeholder {
+            color: var(--text-gray);
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .filter-btn {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-gray);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .filter-btn:hover {
+            border-color: var(--text-green);
+            color: var(--text-green);
+        }
+        .filter-btn.active {
+            background-color: var(--text-green);
+            border-color: var(--text-green);
+            color: var(--bg-primary);
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            color: var(--text-gray);
+            padding: 40px 20px;
+            display: none;
+        }
+        .no-results.show {
+            display: block;
         }
     </style>
 </head>
@@ -124,10 +207,31 @@
                 <h2 class="section-title">Projects</h2>
             </div>
 
+            <!-- Search & Filter -->
+            <div class="search-section">
+                <div class="search-box">
+                    <span class="prompt">$</span>
+                    <span class="command">grep -i "</span>
+                    <input type="text" id="search-input" placeholder="search...">
+                    <span class="command">" projects/</span>
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="go">Go</button>
+                    <button class="filter-btn" data-filter="android">Android</button>
+                    <button class="filter-btn" data-filter="web">Web</button>
+                </div>
+            </div>
+
+            <div class="no-results" id="no-results">
+                <i class="fa-solid fa-search"></i> No matching projects found
+            </div>
+
             <div class="works-grid" id="works-grid">
                 <!-- OSS 1 -->
-                <div class="work-card">
+                <div class="work-card" data-lang="go" data-type="oss">
                     <a href="https://github.com/zabio3/godolint" target="_blank" rel="noopener noreferrer">
+                        <img src="https://opengraph.githubassets.com/1/zabio3/godolint" alt="godolint" class="work-card-image">
                         <div class="work-card-header">
                             <i class="fa-brands fa-github work-card-icon"></i>
                             <h3 class="work-card-title">godolint</h3>
@@ -140,30 +244,76 @@
                     </a>
                 </div>
 
-                <!-- Service 1 -->
-                <div class="work-card">
-                    <a href="#" target="_blank" rel="noopener noreferrer">
+                <!-- EtherSense -->
+                <div class="work-card" data-lang="android" data-type="app">
+                    <a href="https://play.google.com/store/apps/details?id=com.ethersense" target="_blank" rel="noopener noreferrer">
+                        <img src="https://raw.githubusercontent.com/zabio3/EtherSense/main/docs/feature-graphic.svg" alt="EtherSense" class="work-card-image">
                         <div class="work-card-header">
-                            <i class="fa-solid fa-globe work-card-icon"></i>
-                            <h3 class="work-card-title">Service Name</h3>
+                            <i class="fa-brands fa-android work-card-icon"></i>
+                            <h3 class="work-card-title">EtherSense</h3>
                         </div>
-                        <p class="work-card-desc">サービスの説明をここに記載</p>
+                        <p class="work-card-desc">Wi-Fi Network Analyzer for Android. Signal monitoring, speed test & diagnostics.</p>
                         <div class="work-card-meta">
-                            <span><i class="fa-solid fa-link"></i> Web</span>
+                            <span class="work-card-lang"><span class="lang-dot lang-android"></span> Android</span>
                         </div>
                     </a>
                 </div>
 
-                <!-- Android App -->
-                <div class="work-card">
-                    <a href="#" target="_blank" rel="noopener noreferrer">
+                <!-- MD to PDF -->
+                <div class="work-card" data-lang="web" data-type="service">
+                    <a href="https://zabio3.github.io/md-to-pdf/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://raw.githubusercontent.com/zabio3/md-to-pdf/main/assets/images/demo-basic.gif" alt="MD to PDF" class="work-card-image">
                         <div class="work-card-header">
-                            <i class="fa-brands fa-android work-card-icon"></i>
-                            <h3 class="work-card-title">Android App</h3>
+                            <i class="fa-solid fa-file-pdf work-card-icon"></i>
+                            <h3 class="work-card-title">MD to PDF</h3>
                         </div>
-                        <p class="work-card-desc">Androidアプリの説明をここに記載</p>
+                        <p class="work-card-desc">ブラウザで動作するMarkdown to PDFコンバーター。用紙サイズ、ヘッダー/フッター、Mermaid図表など柔軟にカスタマイズ可能。</p>
                         <div class="work-card-meta">
-                            <span class="work-card-lang"><span class="lang-dot lang-kotlin"></span> Kotlin</span>
+                            <span><i class="fa-solid fa-globe"></i> Web Tool</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- web_performance_insights -->
+                <div class="work-card" data-lang="go" data-type="oss">
+                    <a href="https://github.com/zabio3/web_performance_insights" target="_blank" rel="noopener noreferrer">
+                        <img src="https://raw.githubusercontent.com/zabio3/web_performance_insights/master/sequence_tools/images/target_fqdn_no_cache.svg.png" alt="web_performance_insights" class="work-card-image">
+                        <div class="work-card-header">
+                            <i class="fa-brands fa-github work-card-icon"></i>
+                            <h3 class="work-card-title">web_performance_insights</h3>
+                        </div>
+                        <p class="work-card-desc">Webサイトをプロキシして動的にパフォーマンス最適化。OpenResty + Nuster。</p>
+                        <div class="work-card-meta">
+                            <span><i class="fa-solid fa-star"></i> 5</span>
+                            <span class="work-card-lang"><span class="lang-dot lang-c"></span> Lua</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- SilentSnap -->
+                <div class="work-card" data-lang="android" data-type="app">
+                    <img src="images/silentsnap-ogp.png" alt="SilentSnap" class="work-card-image">
+                    <div class="work-card-header">
+                        <i class="fa-brands fa-android work-card-icon"></i>
+                        <h3 class="work-card-title">SilentSnap</h3>
+                    </div>
+                    <p class="work-card-desc">無音カメラアプリ。Google Gemini AIによる写真分析・自動補正機能付き。</p>
+                    <div class="work-card-meta">
+                        <span class="work-card-lang"><span class="lang-dot lang-android"></span> Android</span>
+                    </div>
+                </div>
+
+                <!-- おまいらタイピング -->
+                <div class="work-card" data-lang="web" data-type="service">
+                    <a href="https://zabio3.github.io/omaira/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://github.com/zabio3/omaira/raw/main/docs/demo.gif" alt="おまいらタイピング" class="work-card-image">
+                        <div class="work-card-header">
+                            <i class="fa-solid fa-keyboard work-card-icon"></i>
+                            <h3 class="work-card-title">おまいらタイピング</h3>
+                        </div>
+                        <p class="work-card-desc">懐かしのネットスラングでタイピング練習。制限時間内にスコアを稼げ！</p>
+                        <div class="work-card-meta">
+                            <span><i class="fa-solid fa-gamepad"></i> Web Game</span>
                         </div>
                     </a>
                 </div>
@@ -173,21 +323,9 @@
             <!-- Hidden works (show more) -->
             <div class="works-grid hidden" id="works-more">
                 <!-- Add more works here -->
-                <div class="work-card">
-                    <a href="#" target="_blank" rel="noopener noreferrer">
-                        <div class="work-card-header">
-                            <i class="fa-brands fa-github work-card-icon"></i>
-                            <h3 class="work-card-title">Other Project</h3>
-                        </div>
-                        <p class="work-card-desc">プロジェクトの説明</p>
-                        <div class="work-card-meta">
-                            <span class="work-card-lang"><span class="lang-dot lang-go"></span> Go</span>
-                        </div>
-                    </a>
-                </div>
             </div>
 
-            <button class="show-more-btn" id="show-more-btn" onclick="toggleMore()">
+            <button class="show-more-btn hidden" id="show-more-btn" onclick="toggleMore()">
                 <i class="fa-solid fa-chevron-down"></i> もっと見る
             </button>
 
@@ -196,6 +334,10 @@
 
     <script src="script.js"></script>
     <script>
+        // Current filter state
+        let currentFilter = 'all';
+
+        // Toggle more works
         function toggleMore() {
             const moreWorks = document.getElementById('works-more');
             const btn = document.getElementById('show-more-btn');
@@ -206,7 +348,65 @@
                 moreWorks.classList.add('hidden');
                 btn.innerHTML = '<i class="fa-solid fa-chevron-down"></i> もっと見る';
             }
+            // Re-apply filter after toggling
+            filterProjects();
         }
+
+        // Filter projects based on search text and filter button
+        function filterProjects() {
+            const searchText = document.getElementById('search-input').value.toLowerCase();
+            const allCards = document.querySelectorAll('.work-card');
+            let visibleCount = 0;
+
+            allCards.forEach(card => {
+                const title = card.querySelector('.work-card-title').textContent.toLowerCase();
+                const desc = card.querySelector('.work-card-desc').textContent.toLowerCase();
+                const lang = card.dataset.lang || '';
+
+                // Check search text match
+                const matchesSearch = title.includes(searchText) || desc.includes(searchText);
+
+                // Check filter match
+                const matchesFilter = currentFilter === 'all' || lang === currentFilter;
+
+                // Show/hide card
+                if (matchesSearch && matchesFilter) {
+                    card.style.display = '';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide no results message
+            const noResults = document.getElementById('no-results');
+            if (visibleCount === 0) {
+                noResults.classList.add('show');
+            } else {
+                noResults.classList.remove('show');
+            }
+        }
+
+        // Set up filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                // Update current filter
+                currentFilter = btn.dataset.filter;
+                // Apply filter
+                filterProjects();
+            });
+        });
+
+        // Set up search input with debounce
+        let searchTimeout;
+        document.getElementById('search-input').addEventListener('input', () => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(filterProjects, 150);
+        });
     </script>
 </body>
 </html>

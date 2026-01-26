@@ -187,6 +187,22 @@
             margin-top: 6px;
         }
 
+        /* Profile social icons */
+        .profile-social-icons {
+            display: flex;
+            gap: 16px;
+            margin: 8px 0;
+        }
+        .profile-social-icons a {
+            color: var(--text-gray);
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+        .profile-social-icons a:hover {
+            color: var(--text-cyan);
+            text-shadow: 0 0 8px var(--text-cyan);
+        }
+
         /* Responsive */
         @media (max-width: 600px) {
             .tmux-panes {
@@ -229,13 +245,19 @@
             <div class="tmux-pane tmux-pane-top-left">
                 <img src="https://avatars.githubusercontent.com/u/16008499?v=4" alt="zabio3" style="width: 80px; height: 80px; border-radius: 10px; border: 2px solid var(--border-color);">
                 <p style="color: var(--text-white); font-size: 1rem; margin-top: 8px; margin-bottom: 2px;">zabio3</p>
-                <p style="color: var(--text-gray); font-size: 0.75rem; margin-bottom: 8px;">（Tomohiro Kusumoto）</p>
+                <p style="color: var(--text-gray); font-size: 0.75rem; margin-bottom: 0;">（Tomohiro Kusumoto）</p>
+                <div class="profile-social-icons">
+                    <a href="https://x.com/zabio_3" target="_blank" rel="noopener noreferrer" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://www.facebook.com/zabio03/" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://mixi.social/@zabio3" target="_blank" rel="noopener noreferrer" title="mixi2"><i class="fa-solid fa-users"></i></a>
+                    <a href="https://dashboard.dupr.com/dashboard/player/8385569267" target="_blank" rel="noopener noreferrer" title="DUPR (Pickleball)"><i class="fa-solid fa-table-tennis-paddle-ball"></i></a>
+                </div>
                 <p style="color: var(--text-green); font-size: 0.8rem;">ソフトウェアを生業とする</p>
             </div>
 
-            <!-- Top-right pane: Projects & Writing -->
+            <!-- Top-right pane: Code & Content -->
             <div class="tmux-pane tmux-pane-top-right">
-                <div class="tmux-pane-header">~/projects</div>
+                <div class="tmux-pane-header">~/code</div>
                 <ul class="file-list">
                     <li class="file-item">
                         <span class="file-key">[g]</span>
@@ -243,6 +265,9 @@
                         <a href="https://github.com/zabio3" target="_blank" rel="noopener noreferrer">GitHub</a>
                         <span class="file-type">→</span>
                     </li>
+                </ul>
+                <div class="tmux-pane-header" style="margin-top: 12px;">~/content</div>
+                <ul class="file-list">
                     <li class="file-item">
                         <span class="file-key">[n]</span>
                         <span class="file-icon"><i class="fa-solid fa-pen"></i></span>
