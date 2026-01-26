@@ -23,6 +23,32 @@
             color: var(--text-white);
             font-size: 1.1rem;
         }
+        .company-name a {
+            color: var(--text-white);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .company-name a:hover {
+            color: var(--text-cyan);
+        }
+        .company-name a::after {
+            content: ' 🔗';
+            font-size: 0.7rem;
+            opacity: 0.6;
+        }
+        .role-desc a {
+            color: var(--text-white);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .role-desc a:hover {
+            color: var(--text-cyan);
+        }
+        .role-desc a::after {
+            content: ' 🔗';
+            font-size: 0.7rem;
+            opacity: 0.6;
+        }
         .company-period {
             color: var(--text-gray);
             font-size: 0.8rem;
@@ -152,32 +178,38 @@
 
             <!-- Section Title -->
             <div class="section-header">
-                <span class="section-icon">&#128188;</span>
+                <span class="section-icon">&#128220;</span>
                 <h2 class="section-title">history.txt</h2>
             </div>
+
+            <h3 class="section-divider">&#128188; Career</h3>
 
             <div class="experience-section">
                 <!-- GOGEN -->
                 <div class="company-block">
                     <div class="company-header">
-                        <h3 class="company-name">GOGEN株式会社</h3>
+                        <h3 class="company-name"><a href="https://gogen.jp/" target="_blank" rel="noopener noreferrer">GOGEN株式会社</a></h3>
                         <span class="company-period">2022/02 - Present</span>
                     </div>
                     <div class="role-timeline">
                         <div class="role-item">
                             <div class="role-header">
                                 <div class="role-title-wrap">
-                                    <span class="role-title">執行役員CTO</span>
+                                    <span class="role-title">執行役員CTO・部長</span>
                                     <span class="employment-label fulltime">正社員</span>
                                 </div>
                                 <span class="role-period">2024/10 - Present</span>
                             </div>
-                            <p class="role-desc">不動産売買SaaSプロダクト群の開発統括</p>
+                            <p class="role-desc">技術経営、事業戦略、開発組織統括、プロダクト開発・実装</p>
                             <div class="role-tech-tags">
                                 <span class="role-tech-tag">Go</span>
                                 <span class="role-tech-tag">TypeScript</span>
-                                <span class="role-tech-tag">Next.js</span>
                                 <span class="role-tech-tag">AWS</span>
+                                <span class="role-tech-tag">Terraform</span>
+                                <span class="role-tech-tag">Fargate</span>
+                                <span class="role-tech-tag">Datadog</span>
+                                <span class="role-tech-tag">Auth0</span>
+                                <span class="role-tech-tag">Connect</span>
                                 <span class="role-tech-tag">LLM</span>
                             </div>
                         </div>
@@ -189,25 +221,38 @@
                                 </div>
                                 <span class="role-period">2022/10 - 2024/10</span>
                             </div>
-                            <p class="role-desc">プロダクト部の部長としてチーム運営・意思決定</p>
+                            <p class="role-desc">組織運営（デザイナー含む）、採用、プロダクト開発・マネジメント・実装</p>
                             <div class="role-tech-tags">
                                 <span class="role-tech-tag">Go</span>
                                 <span class="role-tech-tag">TypeScript</span>
                                 <span class="role-tech-tag">AWS</span>
                                 <span class="role-tech-tag">Terraform</span>
+                                <span class="role-tech-tag">Fargate</span>
+                                <span class="role-tech-tag">Datadog</span>
+                                <span class="role-tech-tag">Auth0</span>
+                                <span class="role-tech-tag">Connect</span>
+                                <span class="role-tech-tag">LLM</span>
                             </div>
                         </div>
                         <div class="role-item">
                             <div class="role-header">
                                 <div class="role-title-wrap">
-                                    <span class="role-title">ソフトウェアエンジニア</span>
+                                    <span class="role-title">PM・ソフトウェアエンジニア</span>
                                     <span class="employment-label contract">業務委託</span>
                                 </div>
                                 <span class="role-period">2022/02 - 2022/09</span>
                             </div>
+                            <p class="role-desc">一人目エンジニア。技術基盤構築、開発マネジメント、採用、受託開発</p>
                             <div class="role-tech-tags">
                                 <span class="role-tech-tag">Go</span>
+                                <span class="role-tech-tag">PHP</span>
                                 <span class="role-tech-tag">TypeScript</span>
+                                <span class="role-tech-tag">Vue.js</span>
+                                <span class="role-tech-tag">Next.js</span>
+                                <span class="role-tech-tag">AWS</span>
+                                <span class="role-tech-tag">Aurora</span>
+                                <span class="role-tech-tag">Fargate</span>
+                                <span class="role-tech-tag">Auth0</span>
                             </div>
                         </div>
                     </div>
@@ -228,7 +273,7 @@
                                 </div>
                                 <span class="role-period">2022/02 - Present</span>
                             </div>
-                            <p class="role-desc">一人法人として起業。法人経由で以下のプロジェクトに参画：</p>
+                            <p class="role-desc">マイクロ法人</p>
                         </div>
                         <div class="role-item">
                             <div class="role-header">
@@ -238,7 +283,7 @@
                                 </div>
                                 <span class="role-period">2022/04 - 2022/12</span>
                             </div>
-                            <p class="role-desc">コネヒト株式会社 / Goの促進（メンター）、検索エンジンのリプレイス</p>
+                            <p class="role-desc"><a href="https://connehito.com/" target="_blank" rel="noopener noreferrer">コネヒト株式会社</a> / 社内のGo促進、メンター、検索エンジンのリプレイス</p>
                             <div class="role-tech-tags">
                                 <span class="role-tech-tag">Go</span>
                             </div>
@@ -251,7 +296,7 @@
                                 </div>
                                 <span class="role-period">2022/02 - 2022/10</span>
                             </div>
-                            <p class="role-desc">Hatch Healthcare株式会社 / 新規サービスのインフラマネジメント、買収サービスの移管・コスト削減</p>
+                            <p class="role-desc"><a href="https://www.hatch-healthcare.co.jp/" target="_blank" rel="noopener noreferrer">Hatch Healthcare株式会社</a> / 買収後サービスの移管、セキュリティ対応、環境分離（DEV/STG/PROD）</p>
                             <div class="role-tech-tags">
                                 <span class="role-tech-tag">AWS</span>
                                 <span class="role-tech-tag">Terraform</span>
@@ -265,9 +310,13 @@
                                 </div>
                                 <span class="role-period">2022/02 - 2022/04</span>
                             </div>
-                            <p class="role-desc">株式会社パンフォーユー / 新規サービスの機能開発、基盤改善</p>
+                            <p class="role-desc"><a href="https://panforyou.jp/" target="_blank" rel="noopener noreferrer">株式会社パンフォーユー</a> / 新規サービスの機能開発、基盤改善</p>
                             <div class="role-tech-tags">
-                                <span class="role-tech-tag">Go</span>
+                                <span class="role-tech-tag">React</span>
+                                <span class="role-tech-tag">TypeScript</span>
+                                <span class="role-tech-tag">Firebase</span>
+                                <span class="role-tech-tag">Cloud Run</span>
+                                <span class="role-tech-tag">GCP</span>
                             </div>
                         </div>
                     </div>
@@ -276,7 +325,7 @@
                 <!-- DeNA -->
                 <div class="company-block">
                     <div class="company-header">
-                        <h3 class="company-name">株式会社ディー・エヌ・エー</h3>
+                        <h3 class="company-name"><a href="https://dena.com/" target="_blank" rel="noopener noreferrer">株式会社ディー・エヌ・エー</a></h3>
                         <span class="company-period">2018/12 - 2022/04</span>
                     </div>
                     <div class="role-timeline">
@@ -288,11 +337,19 @@
                                 </div>
                                 <span class="role-period">2020/07 - 2022/02</span>
                             </div>
-                            <p class="role-desc">全社横断インフラ技術ツールの開発</p>
+                            <p class="role-desc">グループ全体のゲーム・エンタメサービスのインフラ運用。主サービスのインフラコスト削減。全社横断インフラ技術ツールの開発</p>
                             <div class="role-tech-tags">
+                                <span class="role-tech-tag">Perl</span>
                                 <span class="role-tech-tag">Go</span>
-                                <span class="role-tech-tag">Kubernetes</span>
+                                <span class="role-tech-tag">PHP</span>
+                                <span class="role-tech-tag">Ruby</span>
+                                <span class="role-tech-tag">Terraform</span>
+                                <span class="role-tech-tag">AWS</span>
                                 <span class="role-tech-tag">GCP</span>
+                                <span class="role-tech-tag">Kubernetes</span>
+                                <span class="role-tech-tag">Prometheus</span>
+                                <span class="role-tech-tag">MySQL</span>
+                                <span class="role-tech-tag">Aurora</span>
                             </div>
                         </div>
                         <div class="role-item">
@@ -303,10 +360,14 @@
                                 </div>
                                 <span class="role-period">2018/12 - 2021/10</span>
                             </div>
-                            <p class="role-desc">ゲームプラットフォームの開発・運用、決済基盤責任者</p>
+                            <p class="role-desc">ゲームプラットフォームの開発・運用。決済・計上・ポイント基盤の主担当。消費税対応、決済手段追加、SLO策定</p>
                             <div class="role-tech-tags">
                                 <span class="role-tech-tag">Go</span>
-                                <span class="role-tech-tag">AWS</span>
+                                <span class="role-tech-tag">Vue.js</span>
+                                <span class="role-tech-tag">TypeScript</span>
+                                <span class="role-tech-tag">GAE</span>
+                                <span class="role-tech-tag">Datastore</span>
+                                <span class="role-tech-tag">CircleCI</span>
                             </div>
                         </div>
                     </div>
@@ -315,7 +376,7 @@
                 <!-- Rimo -->
                 <div class="company-block">
                     <div class="company-header">
-                        <h3 class="company-name">Rimo合同会社</h3>
+                        <h3 class="company-name"><a href="https://rimo.app/" target="_blank" rel="noopener noreferrer">Rimo合同会社</a></h3>
                         <span class="company-period">2019/11 - 2021/08</span>
                     </div>
                     <div class="role-timeline">
@@ -327,10 +388,15 @@
                                 </div>
                                 <span class="role-period">2019/11 - 2021/08</span>
                             </div>
-                            <p class="role-desc">AI文字起こしサービスの0→1開発</p>
+                            <p class="role-desc">AI文字起こしサービスの0→1開発、音声認識API実装、メディア変換API、認証基盤構築</p>
                             <div class="role-tech-tags">
                                 <span class="role-tech-tag">Go</span>
-                                <span class="role-tech-tag">GCP</span>
+                                <span class="role-tech-tag">React</span>
+                                <span class="role-tech-tag">TypeScript</span>
+                                <span class="role-tech-tag">GKE</span>
+                                <span class="role-tech-tag">Firebase</span>
+                                <span class="role-tech-tag">Algolia</span>
+                                <span class="role-tech-tag">AmiVoice</span>
                             </div>
                         </div>
                     </div>
@@ -339,7 +405,7 @@
                 <!-- mikan -->
                 <div class="company-block">
                     <div class="company-header">
-                        <h3 class="company-name">株式会社mikan</h3>
+                        <h3 class="company-name"><a href="https://mikan.link/" target="_blank" rel="noopener noreferrer">株式会社mikan</a></h3>
                         <span class="company-period">2021/02 - 2021/09</span>
                     </div>
                     <div class="role-timeline">
@@ -351,9 +417,11 @@
                                 </div>
                                 <span class="role-period">2021/02 - 2021/09</span>
                             </div>
-                            <p class="role-desc">教材レコメンド・離脱防止機能の開発</p>
+                            <p class="role-desc">BFFからバックエンドへのロジック移行、教材レコメンド・離脱防止機能の開発</p>
                             <div class="role-tech-tags">
                                 <span class="role-tech-tag">Go</span>
+                                <span class="role-tech-tag">GCP</span>
+                                <span class="role-tech-tag">Firebase</span>
                             </div>
                         </div>
                     </div>
@@ -362,10 +430,32 @@
                 <!-- Accelia -->
                 <div class="company-block">
                     <div class="company-header">
-                        <h3 class="company-name">Accelia, Inc.</h3>
+                        <h3 class="company-name"><a href="https://www.accelia.net/" target="_blank" rel="noopener noreferrer">Accelia, Inc.</a></h3>
                         <span class="company-period">2014/04 - 2018/12</span>
                     </div>
                     <div class="role-timeline">
+                        <div class="role-item">
+                            <div class="role-header">
+                                <div class="role-title-wrap">
+                                    <span class="role-title">インフラエンジニア</span>
+                                    <span class="employment-label fulltime">正社員</span>
+                                </div>
+                                <span class="role-period">2014/04 - 2018/12</span>
+                            </div>
+                            <p class="role-desc">週3日。CDN運用・最適化、DDoS防御基盤の構築、キャッシュ効率化、マルチクラウド実証実験、フォレンジック対応</p>
+                            <div class="role-tech-tags">
+                                <span class="role-tech-tag">Nginx</span>
+                                <span class="role-tech-tag">Varnish</span>
+                                <span class="role-tech-tag">OpenResty</span>
+                                <span class="role-tech-tag">Terraform</span>
+                                <span class="role-tech-tag">Kubernetes</span>
+                                <span class="role-tech-tag">AWS</span>
+                                <span class="role-tech-tag">GCP</span>
+                                <span class="role-tech-tag">Packer</span>
+                                <span class="role-tech-tag">オンプレ</span>
+                                <span class="role-tech-tag">BGP</span>
+                            </div>
+                        </div>
                         <div class="role-item">
                             <div class="role-header">
                                 <div class="role-title-wrap">
@@ -374,11 +464,14 @@
                                 </div>
                                 <span class="role-period">2014/04 - 2018/12</span>
                             </div>
-                            <p class="role-desc">CDN・DDoS防御サービスの開発・運用</p>
+                            <p class="role-desc">週2日。インフラ用アプリケーション開発、DDoS防御サービスのWebアプリ開発、顧客ポータル開発</p>
                             <div class="role-tech-tags">
-                                <span class="role-tech-tag">C</span>
+                                <span class="role-tech-tag">Scala</span>
+                                <span class="role-tech-tag">TypeScript</span>
                                 <span class="role-tech-tag">Linux</span>
-                                <span class="role-tech-tag">Network</span>
+                                <span class="role-tech-tag">AWS</span>
+                                <span class="role-tech-tag">GCP</span>
+                                <span class="role-tech-tag">MySQL</span>
                             </div>
                         </div>
                     </div>
@@ -386,14 +479,14 @@
 
             </div>
 
-            <!-- Side Projects Section -->
-            <h3 class="section-divider">Side Projects</h3>
+            <!-- Personal Section -->
+            <h3 class="section-divider">&#10024; Side Projects</h3>
 
             <div class="experience-section">
                 <!-- MENTA -->
                 <div class="company-block">
                     <div class="company-header">
-                        <h3 class="company-name">MENTA</h3>
+                        <h3 class="company-name"><a href="https://menta.work/user/1080" target="_blank" rel="noopener noreferrer">MENTA</a></h3>
                         <span class="company-period">2022/05 - 2022/10</span>
                     </div>
                     <div class="role-timeline">
