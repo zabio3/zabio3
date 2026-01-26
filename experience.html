@@ -6,9 +6,137 @@
     <meta name="description" content="zabio3 - 経歴・職歴">
     <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="style.css">
-    <title>Experience | zabio3</title>
+    <title>History | zabio3</title>
+    <style>
+        .company-block {
+            margin-bottom: 32px;
+        }
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .company-name {
+            color: var(--text-white);
+            font-size: 1.1rem;
+        }
+        .company-period {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+        }
+        .role-timeline {
+            position: relative;
+            padding-left: 20px;
+            margin-left: 8px;
+        }
+        .role-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: var(--text-cyan);
+        }
+        .role-item {
+            position: relative;
+            margin-bottom: 16px;
+            padding-left: 16px;
+        }
+        .role-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background: var(--text-cyan);
+            border-radius: 50%;
+        }
+        .role-item:last-child {
+            margin-bottom: 0;
+        }
+        .role-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .role-title {
+            color: var(--text-green);
+            font-size: 0.95rem;
+        }
+        .role-period {
+            color: var(--text-gray);
+            font-size: 0.75rem;
+        }
+        .role-desc {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+        .role-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .employment-label {
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: normal;
+        }
+        .employment-label.fulltime {
+            background: var(--text-green);
+            color: var(--bg-primary);
+        }
+        .employment-label.contract {
+            background: var(--text-cyan);
+            color: var(--bg-primary);
+        }
+        .employment-label.sidejob {
+            background: #f59e0b;
+            color: var(--bg-primary);
+        }
+        .employment-label.founder {
+            background: #8b5cf6;
+            color: var(--bg-primary);
+        }
+        .employment-label.personal {
+            background: #ec4899;
+            color: var(--bg-primary);
+        }
+        .section-divider {
+            margin: 40px 0 24px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-white);
+            font-size: 1rem;
+        }
+        .role-tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 6px;
+        }
+        .role-tech-tag {
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            color: var(--text-gray);
+        }
+    </style>
 </head>
 <body>
+    <canvas id="particle-canvas"></canvas>
     <div class="terminal terminal-wide">
         <div class="terminal-header">
             <div class="terminal-buttons">
@@ -16,7 +144,7 @@
                 <span class="terminal-button yellow"></span>
                 <span class="terminal-button green"></span>
             </div>
-            <span class="terminal-title">zabio3@portfolio ~/experience</span>
+            <span class="terminal-title">zabio3@home ~/history</span>
         </div>
         <div class="terminal-body">
             <!-- Back link -->
@@ -25,88 +153,302 @@
             <!-- Section Title -->
             <div class="section-header">
                 <span class="section-icon">&#128188;</span>
-                <h2 class="section-title">Professional experience</h2>
+                <h2 class="section-title">history.txt</h2>
             </div>
 
             <div class="experience-section">
                 <!-- GOGEN -->
-                <div class="experience-item-new">
-                    <div class="experience-header">
-                        <h3 class="experience-role">執行役員 CTO</h3>
-                        <span class="experience-date">2022/02 - Present</span>
+                <div class="company-block">
+                    <div class="company-header">
+                        <h3 class="company-name">GOGEN株式会社</h3>
+                        <span class="company-period">2022/02 - Present</span>
                     </div>
-                    <p class="experience-company-new">GOGEN株式会社 / 正社員</p>
+                    <div class="role-timeline">
+                        <div class="role-item">
+                            <div class="role-header">
+                                <div class="role-title-wrap">
+                                    <span class="role-title">執行役員CTO</span>
+                                    <span class="employment-label fulltime">正社員</span>
+                                </div>
+                                <span class="role-period">2024/10 - Present</span>
+                            </div>
+                            <p class="role-desc">不動産売買SaaSプロダクト群の開発統括</p>
+                            <div class="role-tech-tags">
+                                <span class="role-tech-tag">Go</span>
+                                <span class="role-tech-tag">TypeScript</span>
+                                <span class="role-tech-tag">Next.js</span>
+                                <span class="role-tech-tag">AWS</span>
+                                <span class="role-tech-tag">LLM</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-header">
+                                <div class="role-title-wrap">
+                                    <span class="role-title">CTO・部長</span>
+                                    <span class="employment-label fulltime">正社員</span>
+                                </div>
+                                <span class="role-period">2022/10 - 2024/10</span>
+                            </div>
+                            <p class="role-desc">プロダクト部の部長としてチーム運営・意思決定</p>
+                            <div class="role-tech-tags">
+                                <span class="role-tech-tag">Go</span>
+                                <span class="role-tech-tag">TypeScript</span>
+                                <span class="role-tech-tag">AWS</span>
+                                <span class="role-tech-tag">Terraform</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-header">
+                                <div class="role-title-wrap">
+                                    <span class="role-title">ソフトウェアエンジニア</span>
+                                    <span class="employment-label contract">業務委託</span>
+                                </div>
+                                <span class="role-period">2022/02 - 2022/09</span>
+                            </div>
+                            <div class="role-tech-tags">
+                                <span class="role-tech-tag">Go</span>
+                                <span class="role-tech-tag">TypeScript</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    <ul class="experience-list">
-                        <li>不動産売買SaaSプロダクト群の開発統括</li>
-                        <li>エンジニア・デザイナー採用と組織づくり</li>
-                        <li>1on1や評価制度を通じたメンバーの成長支援</li>
-                    </ul>
-
-                    <div class="tech-stack">
-                        <span class="tech-label">Technology Stack</span>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Go</span>
-                            <span class="tech-tag">TypeScript</span>
-                            <span class="tech-tag">Next.js</span>
-                            <span class="tech-tag">AWS</span>
-                            <span class="tech-tag">Terraform</span>
-                            <span class="tech-tag">LLM</span>
-                            <span class="tech-tag">Auth0</span>
-                            <span class="tech-tag">Connect</span>
+                <!-- Alcanforero -->
+                <div class="company-block">
+                    <div class="company-header">
+                        <h3 class="company-name">Alcanforero合同会社</h3>
+                        <span class="company-period">2022/02 - Present</span>
+                    </div>
+                    <div class="role-timeline">
+                        <div class="role-item">
+                            <div class="role-header">
+                                <div class="role-title-wrap">
+                                    <span class="role-title">代表社員</span>
+                                    <span class="employment-label founder">代表</span>
+                                </div>
+                                <span class="role-period">2022/02 - Present</span>
+                            </div>
+                            <p class="role-desc">一人法人として起業。法人経由で以下のプロジェクトに参画：</p>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-header">
+                                <div class="role-title-wrap">
+                                    <span class="role-title">バックエンドエンジニア</span>
+                                    <span class="employment-label contract">業務委託</span>
+                                </div>
+                                <span class="role-period">2022/04 - 2022/12</span>
+                            </div>
+                            <p class="role-desc">コネヒト株式会社 / Goの促進（メンター）、検索エンジンのリプレイス</p>
+                            <div class="role-tech-tags">
+                                <span class="role-tech-tag">Go</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-header">
+                                <div class="role-title-wrap">
+                                    <span class="role-title">PM / SRE</span>
+                                    <span class="employment-label contract">業務委託</span>
+                                </div>
+                                <span class="role-period">2022/02 - 2022/10</span>
+                            </div>
+                            <p class="role-desc">Hatch Healthcare株式会社 / 新規サービスのインフラマネジメント、買収サービスの移管・コスト削減</p>
+                            <div class="role-tech-tags">
+                                <span class="role-tech-tag">AWS</span>
+                                <span class="role-tech-tag">Terraform</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-header">
+                                <div class="role-title-wrap">
+                                    <span class="role-title">バックエンドエンジニア</span>
+                                    <span class="employment-label contract">業務委託</span>
+                                </div>
+                                <span class="role-period">2022/02 - 2022/04</span>
+                            </div>
+                            <p class="role-desc">株式会社パンフォーユー / 新規サービスの機能開発、基盤改善</p>
+                            <div class="role-tech-tags">
+                                <span class="role-tech-tag">Go</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- DeNA -->
-                <div class="experience-item-new">
-                    <div class="experience-header">
-                        <h3 class="experience-role">Infrastructure Engineer</h3>
-                        <span class="experience-date">2018/12 - 2022/04</span>
+                <div class="company-block">
+                    <div class="company-header">
+                        <h3 class="company-name">株式会社ディー・エヌ・エー</h3>
+                        <span class="company-period">2018/12 - 2022/04</span>
                     </div>
-                    <p class="experience-company-new">株式会社ディー・エヌ・エー / 正社員</p>
+                    <div class="role-timeline">
+                        <div class="role-item">
+                            <div class="role-header">
+                                <div class="role-title-wrap">
+                                    <span class="role-title">インフラエンジニア</span>
+                                    <span class="employment-label fulltime">正社員</span>
+                                </div>
+                                <span class="role-period">2020/07 - 2022/02</span>
+                            </div>
+                            <p class="role-desc">全社横断インフラ技術ツールの開発</p>
+                            <div class="role-tech-tags">
+                                <span class="role-tech-tag">Go</span>
+                                <span class="role-tech-tag">Kubernetes</span>
+                                <span class="role-tech-tag">GCP</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-header">
+                                <div class="role-title-wrap">
+                                    <span class="role-title">バックエンドエンジニア</span>
+                                    <span class="employment-label fulltime">正社員</span>
+                                </div>
+                                <span class="role-period">2018/12 - 2021/10</span>
+                            </div>
+                            <p class="role-desc">ゲームプラットフォームの開発・運用、決済基盤責任者</p>
+                            <div class="role-tech-tags">
+                                <span class="role-tech-tag">Go</span>
+                                <span class="role-tech-tag">AWS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    <ul class="experience-list">
-                        <li>ゲーム・エンタメ領域のサービス運用・開発</li>
-                        <li>全社横断インフラ技術ツールの開発</li>
-                        <li>PC向けゲームプラットフォームの開発・運用</li>
-                        <li>決済基盤責任者</li>
-                    </ul>
+                <!-- Rimo -->
+                <div class="company-block">
+                    <div class="company-header">
+                        <h3 class="company-name">Rimo合同会社</h3>
+                        <span class="company-period">2019/11 - 2021/08</span>
+                    </div>
+                    <div class="role-timeline">
+                        <div class="role-item">
+                            <div class="role-header">
+                                <div class="role-title-wrap">
+                                    <span class="role-title">バックエンドエンジニア</span>
+                                    <span class="employment-label sidejob">副業</span>
+                                </div>
+                                <span class="role-period">2019/11 - 2021/08</span>
+                            </div>
+                            <p class="role-desc">AI文字起こしサービスの0→1開発</p>
+                            <div class="role-tech-tags">
+                                <span class="role-tech-tag">Go</span>
+                                <span class="role-tech-tag">GCP</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    <div class="tech-stack">
-                        <span class="tech-label">Technology Stack</span>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Go</span>
-                            <span class="tech-tag">Kubernetes</span>
-                            <span class="tech-tag">GCP</span>
-                            <span class="tech-tag">AWS</span>
+                <!-- mikan -->
+                <div class="company-block">
+                    <div class="company-header">
+                        <h3 class="company-name">株式会社mikan</h3>
+                        <span class="company-period">2021/02 - 2021/09</span>
+                    </div>
+                    <div class="role-timeline">
+                        <div class="role-item">
+                            <div class="role-header">
+                                <div class="role-title-wrap">
+                                    <span class="role-title">バックエンドエンジニア</span>
+                                    <span class="employment-label sidejob">副業</span>
+                                </div>
+                                <span class="role-period">2021/02 - 2021/09</span>
+                            </div>
+                            <p class="role-desc">教材レコメンド・離脱防止機能の開発</p>
+                            <div class="role-tech-tags">
+                                <span class="role-tech-tag">Go</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Accelia -->
-                <div class="experience-item-new">
-                    <div class="experience-header">
-                        <h3 class="experience-role">Software Engineer</h3>
-                        <span class="experience-date">2014/04 - 2018/12</span>
+                <div class="company-block">
+                    <div class="company-header">
+                        <h3 class="company-name">Accelia, Inc.</h3>
+                        <span class="company-period">2014/04 - 2018/12</span>
                     </div>
-                    <p class="experience-company-new">Accelia, Inc. / 正社員</p>
-
-                    <ul class="experience-list">
-                        <li>CDNの開発・運用</li>
-                        <li>DDoS防御サービスの開発・運用</li>
-                    </ul>
-
-                    <div class="tech-stack">
-                        <span class="tech-label">Technology Stack</span>
-                        <div class="tech-tags">
-                            <span class="tech-tag">C</span>
-                            <span class="tech-tag">Linux</span>
-                            <span class="tech-tag">Network</span>
+                    <div class="role-timeline">
+                        <div class="role-item">
+                            <div class="role-header">
+                                <div class="role-title-wrap">
+                                    <span class="role-title">ソフトウェアエンジニア</span>
+                                    <span class="employment-label fulltime">正社員</span>
+                                </div>
+                                <span class="role-period">2014/04 - 2018/12</span>
+                            </div>
+                            <p class="role-desc">CDN・DDoS防御サービスの開発・運用</p>
+                            <div class="role-tech-tags">
+                                <span class="role-tech-tag">C</span>
+                                <span class="role-tech-tag">Linux</span>
+                                <span class="role-tech-tag">Network</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
+            </div>
+
+            <!-- Side Projects Section -->
+            <h3 class="section-divider">Side Projects</h3>
+
+            <div class="experience-section">
+                <!-- MENTA -->
+                <div class="company-block">
+                    <div class="company-header">
+                        <h3 class="company-name">MENTA</h3>
+                        <span class="company-period">2022/05 - 2022/10</span>
+                    </div>
+                    <div class="role-timeline">
+                        <div class="role-item">
+                            <div class="role-header">
+                                <div class="role-title-wrap">
+                                    <span class="role-title">メンター</span>
+                                    <span class="employment-label personal">個人</span>
+                                </div>
+                                <span class="role-period">2022/05 - 2022/10</span>
+                            </div>
+                            <p class="role-desc">システム開発・設計のオンライン相談</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JeneLab -->
+                <div class="company-block">
+                    <div class="company-header">
+                        <h3 class="company-name">JeneLab</h3>
+                        <span class="company-period">2018/01 - 2019/02</span>
+                    </div>
+                    <div class="role-timeline">
+                        <div class="role-item">
+                            <div class="role-header">
+                                <div class="role-title-wrap">
+                                    <span class="role-title">運営</span>
+                                    <span class="employment-label personal">個人</span>
+                                </div>
+                                <span class="role-period">2018/01 - 2019/02</span>
+                            </div>
+                            <p class="role-desc">エンジニア向けコワーキングスペースの運営</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Share House -->
+                <div class="company-block">
+                    <div class="company-header">
+                        <h3 class="company-name">とんぼハウス（シェアハウス運営）</h3>
+                        <span class="company-period">2014/10 - 2021/06</span>
+                    </div>
+                    <div class="role-timeline">
+                        <div class="role-item">
+                            <div class="role-header">
+                                <div class="role-title-wrap">
+                                    <span class="role-title">管理人</span>
+                                    <span class="employment-label personal">個人</span>
+                                </div>
+                                <span class="role-period">2014/10 - 2021/06</span>
+                            </div>
+                            <p class="role-desc">神楽坂・江戸川橋エリアで「東京の下町暮らしを楽しむ」をコンセプトにしたシェアハウスを運営。入居者募集・コミュニティ運営・物件管理を担当</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
