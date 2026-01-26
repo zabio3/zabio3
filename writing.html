@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="zabio3 - Writing">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Writing | zabio3</title>
+    <style>
+        .writing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .writing-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+        .writing-card:hover {
+            border-color: var(--text-cyan);
+            transform: translateY(-4px);
+        }
+        .writing-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background-color: var(--bg-primary);
+        }
+        .writing-card-body {
+            padding: 16px;
+        }
+        .writing-card-title {
+            color: var(--text-white);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .writing-card-meta {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+        .writing-card-desc {
+            color: var(--text-green);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .writing-card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal terminal-wide">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="terminal-button red"></span>
+                <span class="terminal-button yellow"></span>
+                <span class="terminal-button green"></span>
+            </div>
+            <span class="terminal-title">zabio3@portfolio ~/writing</span>
+        </div>
+        <div class="terminal-body">
+            <!-- Back link -->
+            <a href="index.html" class="back-link">$ cd ..</a>
+
+            <!-- Section Title -->
+            <div class="section-header">
+                <span class="section-icon"><i class="fa-solid fa-pen-nib"></i></span>
+                <h2 class="section-title">Writing</h2>
+            </div>
+
+            <div class="writing-grid">
+                <!-- Book 1 -->
+                <div class="writing-card">
+                    <a href="https://bookplus.nikkei.com/atcl/catalog/25/05/12/02006/" target="_blank" rel="noopener noreferrer">
+                        <img src="" alt="書籍カバー">
+                        <div class="writing-card-body">
+                            <h3 class="writing-card-title">書籍タイトル</h3>
+                            <p class="writing-card-meta">日経BP / 2025</p>
+                            <p class="writing-card-desc">紹介文をここに</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Add more cards here -->
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
