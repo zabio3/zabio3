@@ -33,7 +33,14 @@ html {
 
 body {
   font-family: 'Fira Code', monospace;
-  background-color: var(--bg-primary);
+  background:
+    linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+    radial-gradient(ellipse at top left, rgba(0, 217, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(0, 255, 65, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, #0a0e14 0%, #0d1117 50%, #161b22 100%);
+  background-size: 50px 50px, 50px 50px, 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: fixed;
   color: var(--text-green);
   min-height: 100vh;
   display: flex;
