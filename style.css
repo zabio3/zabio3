@@ -19,6 +19,17 @@
   --green-dot: #27c93f;
 }
 
+/* Particle Canvas */
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
 /* Reset */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -59,6 +70,8 @@ body {
   width: 100%;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .terminal.terminal-wide {
@@ -73,6 +86,7 @@ body {
   align-items: center;
   gap: 12px;
   border-bottom: 1px solid var(--border-color);
+  position: relative;
 }
 
 .terminal-buttons {
@@ -309,6 +323,17 @@ body {
 /* Glow Effect */
 .glow {
   text-shadow: 0 0 10px currentColor;
+}
+
+/* About Page */
+.about-content {
+  margin-left: 8px;
+}
+
+.about-text {
+  color: var(--text-green);
+  line-height: 1.8;
+  margin-bottom: 4px;
 }
 
 /* Section Header */

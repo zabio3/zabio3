@@ -8,106 +8,396 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <title>zabio3 | Software Engineer</title>
+    <style>
+        /* tmux-style layout */
+        .tmux-container {
+            background-color: var(--bg-terminal);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tmux-panes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            min-height: 400px;
+        }
+
+        .tmux-pane {
+            padding: 16px;
+            position: relative;
+        }
+
+        .tmux-pane-top-left {
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tmux-pane-bottom-left {
+            border-right: 1px solid var(--border-color);
+        }
+
+        .tmux-pane-top-right {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tmux-pane-bottom-right {
+            /* bottom right pane */
+        }
+
+        .tmux-pane-header {
+            color: var(--text-gray);
+            font-size: 0.75rem;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tmux-pane-number {
+            color: var(--text-cyan);
+        }
+
+        /* tmux status bar */
+        .tmux-statusbar {
+            background-color: var(--text-green);
+            color: var(--bg-primary);
+            padding: 4px 12px;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tmux-statusbar-left {
+            display: flex;
+            gap: 16px;
+        }
+
+        .tmux-window {
+            padding: 2px 8px;
+        }
+
+        .tmux-window.active {
+            background-color: var(--bg-primary);
+            color: var(--text-green);
+        }
+
+        .tmux-statusbar-right {
+            color: var(--bg-primary);
+        }
+
+        /* File listing styles */
+        .file-list {
+            list-style: none;
+            font-size: 0.85rem;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+        }
+
+        .file-item a {
+            color: var(--text-green);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .file-item a:hover {
+            color: var(--text-cyan);
+            text-shadow: 0 0 8px var(--text-cyan);
+        }
+
+        .file-icon {
+            color: var(--text-cyan);
+            width: 16px;
+            text-align: center;
+        }
+
+        .file-type {
+            color: var(--text-gray);
+            font-size: 0.75rem;
+            margin-left: auto;
+        }
+
+        .file-key {
+            color: var(--text-cyan);
+            font-size: 0.75rem;
+            width: 24px;
+        }
+
+        /* SNS dropdown in statusbar */
+        .tmux-user {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tmux-user:hover {
+            text-decoration: underline;
+        }
+
+        .tmux-dropdown {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 8px;
+            min-width: 140px;
+            margin-bottom: 4px;
+        }
+
+        .tmux-dropdown.show {
+            display: block;
+        }
+
+        .tmux-dropdown a {
+            display: block;
+            color: var(--text-green);
+            text-decoration: none;
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+        }
+
+        .tmux-dropdown a:hover {
+            background-color: var(--bg-primary);
+            color: var(--text-cyan);
+        }
+
+        .tmux-dropdown-note {
+            color: var(--text-gray);
+            font-size: 0.7rem;
+            padding: 6px 8px 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 6px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .tmux-panes {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto auto;
+            }
+
+            .tmux-pane-top-left {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .tmux-pane-top-right {
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .tmux-pane-bottom-left {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="terminal">
+    <canvas id="particle-canvas"></canvas>
+    <div class="tmux-container">
+        <!-- tmux header (window tabs style) -->
         <div class="terminal-header">
             <div class="terminal-buttons">
                 <span class="terminal-button red"></span>
                 <span class="terminal-button yellow"></span>
                 <span class="terminal-button green"></span>
             </div>
-            <span class="terminal-title">zabio3@portfolio ~ bash</span>
+            <span class="terminal-title">zabio3@home ~ tmux</span>
         </div>
-        <div class="terminal-body">
-            <!-- ASCII Art Logo -->
-            <pre class="ascii-art">
-███████╗ █████╗ ██████╗ ██╗ ██████╗ ██████╗
-╚══███╔╝██╔══██╗██╔══██╗██║██╔═══██╗╚════██╗
-  ███╔╝ ███████║██████╔╝██║██║   ██║ █████╔╝
- ███╔╝  ██╔══██║██╔══██╗██║██║   ██║ ╚═══██╗
-███████╗██║  ██║██████╔╝██║╚██████╔╝██████╔╝
-╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝ ╚═════╝ ╚═════╝
-            </pre>
 
-            <!-- whoami command -->
-            <div class="command-line">
-                <span class="prompt">$</span>
-                <span class="command"> whoami</span>
-            </div>
-            <div class="command-output" data-command-delay="300">
-                <span class="output">> Software Engineer / CTO</span>
+        <!-- tmux panes -->
+        <div class="tmux-panes">
+            <!-- Top-left pane: Profile -->
+            <div class="tmux-pane tmux-pane-top-left">
+                <img src="https://avatars.githubusercontent.com/u/16008499?v=4" alt="zabio3" style="width: 80px; height: 80px; border-radius: 10px; border: 2px solid var(--border-color);">
+                <p style="color: var(--text-white); font-size: 1rem; margin-top: 8px; margin-bottom: 2px;">zabio3</p>
+                <p style="color: var(--text-gray); font-size: 0.75rem; margin-bottom: 8px;">（Tomohiro Kusumoto）</p>
+                <p style="color: var(--text-green); font-size: 0.8rem;">ソフトウェアを生業とする</p>
             </div>
 
-            <!-- cat links.txt command -->
-            <div class="command-line" style="margin-top: 20px;">
-                <span class="prompt">$</span>
-                <span class="command"> cat links.txt</span>
+            <!-- Top-right pane: Projects & Writing -->
+            <div class="tmux-pane tmux-pane-top-right">
+                <div class="tmux-pane-header">~/projects</div>
+                <ul class="file-list">
+                    <li class="file-item">
+                        <span class="file-key">[g]</span>
+                        <span class="file-icon"><i class="fa-brands fa-github"></i></span>
+                        <a href="https://github.com/zabio3" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <span class="file-type">→</span>
+                    </li>
+                    <li class="file-item">
+                        <span class="file-key">[n]</span>
+                        <span class="file-icon"><i class="fa-solid fa-pen"></i></span>
+                        <a href="https://note.com/zabio3" target="_blank" rel="noopener noreferrer">note</a>
+                        <span class="file-type">→</span>
+                    </li>
+                    <li class="file-item">
+                        <span class="file-key">[s]</span>
+                        <span class="file-icon"><i class="fa-solid fa-feather"></i></span>
+                        <a href="https://sizu.me/zabio3" target="_blank" rel="noopener noreferrer">sizu.me</a>
+                        <span class="file-type">→</span>
+                    </li>
+                    <li class="file-item">
+                        <span class="file-key">[d]</span>
+                        <span class="file-icon"><i class="fa-brands fa-speaker-deck"></i></span>
+                        <a href="https://speakerdeck.com/zabio3" target="_blank" rel="noopener noreferrer">SpeakerDeck</a>
+                        <span class="file-type">→</span>
+                    </li>
+                </ul>
             </div>
-            <div class="command-output" data-command-delay="600">
-                <div class="links-list">
-                    <a href="https://github.com/zabio3" target="_blank" rel="noopener noreferrer" class="link-item"><i class="fa-brands fa-github"></i> GitHub</a>
-                    <a href="https://note.com/zabio3" target="_blank" rel="noopener noreferrer" class="link-item"><i class="fa-solid fa-pen"></i> note</a>
-                    <a href="https://sizu.me/zabio3" target="_blank" rel="noopener noreferrer" class="link-item"><i class="fa-solid fa-feather"></i> sizu.me</a>
-                    <a href="https://speakerdeck.com/zabio3" target="_blank" rel="noopener noreferrer" class="link-item"><i class="fa-brands fa-speaker-deck"></i> SpeakerDeck</a>
+
+            <!-- Bottom-left pane: Navigation -->
+            <div class="tmux-pane tmux-pane-bottom-left">
+                <div class="tmux-pane-header"><span class="tmux-pane-number">[0]</span> ~</div>
+                <div class="command-line">
+                    <span class="prompt">$</span>
+                    <span class="command"> ls -la</span>
                 </div>
+                <ul class="file-list" style="margin-top: 8px;">
+                    <li class="file-item">
+                        <span class="file-key">[0]</span>
+                        <span class="file-icon"><i class="fa-solid fa-folder"></i></span>
+                        <a href="about.html">about/</a>
+                    </li>
+                    <li class="file-item">
+                        <span class="file-key">[1]</span>
+                        <span class="file-icon"><i class="fa-solid fa-folder"></i></span>
+                        <a href="works.html">projects/</a>
+                    </li>
+                    <li class="file-item">
+                        <span class="file-key">[2]</span>
+                        <span class="file-icon"><i class="fa-solid fa-folder"></i></span>
+                        <a href="writing.html">writing/</a>
+                    </li>
+                    <li class="file-item">
+                        <span class="file-key">[3]</span>
+                        <span class="file-icon"><i class="fa-solid fa-folder"></i></span>
+                        <a href="experience.html">history/</a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- cd works command -->
-            <div class="command-line" style="margin-top: 20px;">
-                <span class="prompt">$</span>
-                <span class="command"> cd works</span>
+            <!-- Bottom-right pane: Career -->
+            <div class="tmux-pane tmux-pane-bottom-right">
+                <div class="tmux-pane-header">~/career</div>
+                <ul class="file-list">
+                    <li class="file-item">
+                        <span class="file-key">[l]</span>
+                        <span class="file-icon"><i class="fa-brands fa-linkedin"></i></span>
+                        <a href="https://jp.linkedin.com/in/tomohiro-kusumoto-b8b108152" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <span class="file-type">→</span>
+                    </li>
+                    <li class="file-item">
+                        <span class="file-key">[y]</span>
+                        <span class="file-icon"><i class="fa-solid fa-handshake"></i></span>
+                        <a href="https://youtrust.jp/users/zabio3" target="_blank" rel="noopener noreferrer">YOUTRUST</a>
+                        <span class="file-type">→</span>
+                    </li>
+                </ul>
             </div>
-            <div class="command-output" data-command-delay="750">
-                <a href="works.html" class="nav-link">> Works <span class="arrow">→</span></a>
-            </div>
+        </div>
 
-            <!-- cd writing command -->
-            <div class="command-line" style="margin-top: 20px;">
-                <span class="prompt">$</span>
-                <span class="command"> cd writing</span>
+        <!-- tmux status bar -->
+        <div class="tmux-statusbar">
+            <div class="tmux-statusbar-left">
+                <span class="tmux-user" id="tmux-user">
+                    [zabio3@home]
+                    <div class="tmux-dropdown" id="tmux-dropdown">
+                        <a href="https://x.com/zabio_3" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i> X</a>
+                        <a href="https://www.facebook.com/zabio03/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                        <a href="https://mixi.social/@zabio3" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-users"></i> mixi2</a>
+                        <div class="tmux-dropdown-note">DM is open on X</div>
+                    </div>
+                </span>
+                <span class="tmux-window active">home</span>
             </div>
-            <div class="command-output" data-command-delay="850">
-                <a href="writing.html" class="nav-link">> Writing <span class="arrow">→</span></a>
-            </div>
-
-            <!-- cd experience command -->
-            <div class="command-line" style="margin-top: 20px;">
-                <span class="prompt">$</span>
-                <span class="command"> cd experience</span>
-            </div>
-            <div class="command-output" data-command-delay="900">
-                <a href="experience.html" class="nav-link">> Career <span class="arrow">→</span></a>
-                <div class="links-list" style="margin-top: 10px;">
-                    <a href="https://jp.linkedin.com/in/tomohiro-kusumoto-b8b108152" target="_blank" rel="noopener noreferrer" class="link-item"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://youtrust.jp/users/zabio3" target="_blank" rel="noopener noreferrer" class="link-item"><i class="fa-solid fa-handshake"></i> YOUTRUST</a>
-                </div>
-            </div>
-
-            <!-- cat sns.txt command -->
-            <div class="command-line" style="margin-top: 20px;">
-                <span class="prompt">$</span>
-                <span class="command"> cat sns.txt</span>
-            </div>
-            <div class="command-output" data-command-delay="1200">
-                <div class="links-list">
-                    <a href="https://x.com/zabio_3" target="_blank" rel="noopener noreferrer" class="link-item"><i class="fa-brands fa-x-twitter"></i> X</a>
-                    <a href="https://www.facebook.com/zabio03/" target="_blank" rel="noopener noreferrer" class="link-item"><i class="fa-brands fa-facebook"></i> Facebook</a>
-                    <a href="https://mixi.social/@zabio3" target="_blank" rel="noopener noreferrer" class="link-item"><i class="fa-solid fa-users"></i> mixi2</a>
-                </div>
-            </div>
-
-            <!-- contact command -->
-            <div class="command-line" style="margin-top: 20px;">
-                <span class="prompt">$</span>
-                <span class="command"> contact</span>
-            </div>
-            <div class="command-output" data-command-delay="1500">
-                <span class="output">> DM is open on X</span>
+            <div class="tmux-statusbar-right">
+                <span style="opacity: 0.7; margin-right: 12px;">Press key to navigate</span>
+                <span id="tmux-time"></span>
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // tmux dropdown toggle
+        const tmuxUser = document.getElementById('tmux-user');
+        const tmuxDropdown = document.getElementById('tmux-dropdown');
+
+        if (tmuxUser && tmuxDropdown) {
+            tmuxUser.addEventListener('click', (e) => {
+                e.stopPropagation();
+                tmuxDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!tmuxDropdown.contains(e.target)) {
+                    tmuxDropdown.classList.remove('show');
+                }
+            });
+        }
+
+        // Update time in statusbar
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleString('ja-JP', {
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('tmux-time').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+
+        // Keyboard navigation (tmux-like)
+        const internalLinks = {
+            '0': 'about.html',
+            '1': 'works.html',
+            '2': 'writing.html',
+            '3': 'experience.html'
+        };
+
+        const externalLinks = {
+            'g': 'https://github.com/zabio3',
+            'n': 'https://note.com/zabio3',
+            's': 'https://sizu.me/zabio3',
+            'd': 'https://speakerdeck.com/zabio3',
+            'l': 'https://jp.linkedin.com/in/tomohiro-kusumoto-b8b108152',
+            'y': 'https://youtrust.jp/users/zabio3'
+        };
+
+        document.addEventListener('keydown', (e) => {
+            // Ignore if user is typing in an input field
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+            const key = e.key.toLowerCase();
+
+            if (internalLinks[key]) {
+                window.location.href = internalLinks[key];
+            } else if (externalLinks[key]) {
+                window.open(externalLinks[key], '_blank', 'noopener,noreferrer');
+            }
+        });
+    </script>
 </body>
 </html>

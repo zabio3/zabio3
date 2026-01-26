@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="zabio3 - About">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>About | zabio3</title>
+</head>
+<body>
+    <canvas id="particle-canvas"></canvas>
+    <div class="terminal">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="terminal-button red"></span>
+                <span class="terminal-button yellow"></span>
+                <span class="terminal-button green"></span>
+            </div>
+            <span class="terminal-title">zabio3@home ~/about</span>
+        </div>
+        <div class="terminal-body">
+            <!-- Back link -->
+            <a href="index.html" class="back-link">$ cd ..</a>
+
+            <!-- About content -->
+            <div class="command-line" style="margin-top: 20px;">
+                <span class="prompt">$</span>
+                <span class="command"> cat README.md</span>
+            </div>
+            <div class="command-output">
+                <div class="about-content" style="text-align: center;">
+                    <img src="https://avatars.githubusercontent.com/u/16008499?v=4" alt="zabio3" style="width: 120px; height: 120px; border-radius: 12px; margin-bottom: 16px; border: 2px solid var(--border-color);">
+                    <p style="color: var(--text-white); font-size: 1.3rem; margin-bottom: 4px;">zabio3</p>
+                    <p style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 16px;">（Tomohiro Kusumoto）</p>
+                    <p style="color: var(--text-green); font-size: 0.9rem;">ソフトウェアを生業とする</p>
+                </div>
+            </div>
+
+            <!-- Likes -->
+            <div class="command-line" style="margin-top: 24px;">
+                <span class="prompt">$</span>
+                <span class="command"> cat likes.txt</span>
+            </div>
+            <div class="command-output" style="text-align: center;">
+                <span class="output" style="display: block; line-height: 1.8;">
+                    苔 / テラリウム / ピックルボール / コーヒー / 散歩
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
