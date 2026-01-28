@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="zabio3 - Favorites">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Favorites | zabio3</title>
+    <style>
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .favorite-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+        .favorite-card:hover {
+            border-color: var(--text-cyan);
+            transform: translateY(-4px);
+        }
+        .favorite-card a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .favorite-card-image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            background-color: var(--bg-primary);
+        }
+        .favorite-card-title {
+            color: var(--text-white);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .favorite-card-desc {
+            color: var(--text-green);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        .favorite-card-category {
+            display: inline-block;
+            background-color: var(--bg-primary);
+            color: var(--text-cyan);
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Placeholder card */
+        .favorite-card.placeholder {
+            border-style: dashed;
+            opacity: 0.6;
+        }
+        .favorite-card.placeholder .favorite-card-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            font-size: 2rem;
+        }
+
+        /* Search Section */
+        .search-section {
+            margin-bottom: 24px;
+        }
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+        }
+        .search-box .prompt {
+            color: var(--text-cyan);
+            margin-right: 8px;
+        }
+        .search-box .command {
+            color: var(--text-white);
+        }
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: var(--text-green);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            outline: none;
+            width: 120px;
+        }
+        .search-box input::placeholder {
+            color: var(--text-gray);
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .filter-btn {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-gray);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .filter-btn:hover {
+            border-color: var(--text-green);
+            color: var(--text-green);
+        }
+        .filter-btn.active {
+            background-color: var(--text-green);
+            border-color: var(--text-green);
+            color: var(--bg-primary);
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            color: var(--text-gray);
+            padding: 40px 20px;
+            display: none;
+        }
+        .no-results.show {
+            display: block;
+        }
+
+        /* Hidden page hint */
+        .hidden-hint {
+            margin-top: 40px;
+            padding: 16px;
+            border: 1px dashed var(--border-color);
+            border-radius: 6px;
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.8rem;
+        }
+        .hidden-hint i {
+            margin-right: 6px;
+            color: var(--text-cyan);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particle-canvas"></canvas>
+    <div class="terminal terminal-wide">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="terminal-button red"></span>
+                <span class="terminal-button yellow"></span>
+                <span class="terminal-button green"></span>
+            </div>
+            <span class="terminal-title">zabio3@home ~/.favorites</span>
+        </div>
+        <div class="terminal-body">
+            <!-- Back link -->
+            <a href="about.html" class="back-link">$ cd ..</a>
+
+            <!-- Section Title -->
+            <div class="section-header">
+                <span class="section-icon"><i class="fa-solid fa-heart"></i></span>
+                <h2 class="section-title">Favorites</h2>
+            </div>
+
+            <!-- Search & Filter -->
+            <div class="search-section">
+                <div class="search-box">
+                    <span class="prompt">$</span>
+                    <span class="command">grep -i "</span>
+                    <input type="text" id="search-input" placeholder="search...">
+                    <span class="command">" .favorites/</span>
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="gadget">Gadget</button>
+                    <button class="filter-btn" data-filter="keyboard">Keyboard</button>
+                    <button class="filter-btn" data-filter="moss">Moss</button>
+                    <button class="filter-btn" data-filter="aquarium">Aquarium</button>
+                    <button class="filter-btn" data-filter="art">Art</button>
+                    <button class="filter-btn" data-filter="life">Life</button>
+                </div>
+            </div>
+
+            <div class="no-results" id="no-results">
+                <i class="fa-solid fa-search"></i> No matching items found
+            </div>
+
+            <div class="favorites-grid" id="favorites-grid">
+
+                <div class="favorite-card" data-category="gadget">
+                    <img src="images/victor-wood-master.webp" alt="Victor WOOD master" class="favorite-card-image">
+                    <h3 class="favorite-card-title">Victor WOOD master</h3>
+                    <p class="favorite-card-desc">木の音。長く聴いても疲れぬ。仕事中の相棒。</p>
+                    <span class="favorite-card-category">Gadget</span>
+                </div>
+
+                <div class="favorite-card" data-category="gadget">
+                    <img src="images/rimowa-pilot.png" alt="RIMOWA Original Pilot" class="favorite-card-image">
+                    <h3 class="favorite-card-title">RIMOWA Original Pilot</h3>
+                    <p class="favorite-card-desc">出張の相棒。縦に入る。機内に持ち込める。唯それだけで良い。</p>
+                    <span class="favorite-card-category">Gadget</span>
+                </div>
+
+                <div class="favorite-card" data-category="gadget">
+                    <img src="images/ado-air-carbon.png" alt="ADO Air Carbon" class="favorite-card-image">
+                    <h3 class="favorite-card-title">ADO Air Carbon</h3>
+                    <p class="favorite-card-desc">軽い。畳める。車に載る。坂も苦にならぬ。</p>
+                    <span class="favorite-card-category">Gadget</span>
+                </div>
+
+                <div class="favorite-card" data-category="gadget">
+                    <img src="images/bambu-a1-mini.jpg" alt="Bambu Lab A1 mini" class="favorite-card-image">
+                    <h3 class="favorite-card-title">Bambu Lab A1 mini</h3>
+                    <p class="favorite-card-desc">置けば動く。失敗せぬ。思い付きが形になる。</p>
+                    <span class="favorite-card-category">Gadget</span>
+                </div>
+
+                <div class="favorite-card" data-category="gadget">
+                    <img src="images/galaxy-z-fold7.jpeg" alt="Galaxy Z Fold7" class="favorite-card-image">
+                    <h3 class="favorite-card-title">Galaxy Z Fold7</h3>
+                    <p class="favorite-card-desc">開けば大画面。Kindleが読める。moNa2と合わせれば出先のPCになる。</p>
+                    <span class="favorite-card-category">Gadget</span>
+                </div>
+
+                <div class="favorite-card" data-category="keyboard">
+                    <img src="images/mona2.png" alt="moNa2" class="favorite-card-image">
+                    <h3 class="favorite-card-title">moNa2</h3>
+                    <p class="favorite-card-desc">TOKYO KEYBOARD EXPO。開演3時間前から並んだ。無線分割。</p>
+                    <span class="favorite-card-category">Keyboard</span>
+                </div>
+
+                <div class="favorite-card" data-category="moss">
+                    <img src="images/moss-terrarium.jpg" alt="苔テラリウム" class="favorite-card-image">
+                    <h3 class="favorite-card-title">苔テラリウム</h3>
+                    <p class="favorite-card-desc">樹環。浅間溶岩石に苔。軽井沢の風景が此処に在る。</p>
+                    <span class="favorite-card-category">Moss</span>
+                </div>
+
+                <div class="favorite-card" data-category="moss">
+                    <img src="images/green-wall.jpg" alt="プリザーブドモス" class="favorite-card-image">
+                    <h3 class="favorite-card-title">プリザーブドモス</h3>
+                    <p class="favorite-card-desc">ベル・フルール。水やり不要。本物の質感。壁に苔。</p>
+                    <span class="favorite-card-category">Moss</span>
+                </div>
+
+                <div class="favorite-card" data-category="aquarium">
+                    <img src="images/ecosphere.jpg" alt="EcoSPHERE" class="favorite-card-image">
+                    <h3 class="favorite-card-title">EcoSPHERE</h3>
+                    <p class="favorite-card-desc">オパエ'ウラが孵化した。生態系が壊れるやも知れぬ。見守る他ない。</p>
+                    <span class="favorite-card-category">Aquarium</span>
+                </div>
+
+                <div class="favorite-card" data-category="art">
+                    <img src="images/cachalot.png" alt="Cachalot" class="favorite-card-image">
+                    <h3 class="favorite-card-title">Cachalot / カシャロ</h3>
+                    <p class="favorite-card-desc">唯、形が良い。実用性は求めぬ。其れで良い。</p>
+                    <span class="favorite-card-category">Art</span>
+                </div>
+
+                <div class="favorite-card" data-category="art">
+                    <img src="images/switchbot-ai-art-canvas.jpg" alt="SwitchBot AIアートキャンバス" class="favorite-card-image">
+                    <h3 class="favorite-card-title">SwitchBot AIアートキャンバス</h3>
+                    <p class="favorite-card-desc">E-Ink。壁の絵が変わる。発光せぬ。紙の質感。</p>
+                    <span class="favorite-card-category">Art</span>
+                </div>
+
+                <div class="favorite-card" data-category="life">
+                    <img src="images/zero-frypan.jpg" alt="ゼロフライパン" class="favorite-card-image">
+                    <h3 class="favorite-card-title">ゼロフライパン</h3>
+                    <p class="favorite-card-desc">鉄。メイラード反応。目玉焼き。炒め物。料理が楽しい。</p>
+                    <span class="favorite-card-category">Life</span>
+                </div>
+
+                <div class="favorite-card" data-category="life">
+                    <img src="images/lamdash-palmin.jpg" alt="ラムダッシュ パームイン" class="favorite-card-image">
+                    <h3 class="favorite-card-title">ラムダッシュ パームイン</h3>
+                    <p class="favorite-card-desc">小さい。洗面台が片付く。旅に持てる。Type-C。</p>
+                    <span class="favorite-card-category">Life</span>
+                </div>
+
+            </div>
+
+            <!-- Hidden page hint -->
+            <div class="hidden-hint">
+                <i class="fa-solid fa-eye-slash"></i>
+                You found the hidden page!
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Current filter state
+        let currentFilter = 'all';
+
+        // Filter favorites based on search text and filter button
+        function filterFavorites() {
+            const searchText = document.getElementById('search-input').value.toLowerCase();
+            const allCards = document.querySelectorAll('.favorite-card');
+            let visibleCount = 0;
+
+            allCards.forEach(card => {
+                const title = card.querySelector('.favorite-card-title').textContent.toLowerCase();
+                const desc = card.querySelector('.favorite-card-desc').textContent.toLowerCase();
+                const category = card.dataset.category || '';
+
+                // Check search text match
+                const matchesSearch = title.includes(searchText) || desc.includes(searchText);
+
+                // Check filter match
+                const matchesFilter = currentFilter === 'all' || category === currentFilter;
+
+                // Show/hide card
+                if (matchesSearch && matchesFilter) {
+                    card.style.display = '';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide no results message
+            const noResults = document.getElementById('no-results');
+            if (visibleCount === 0) {
+                noResults.classList.add('show');
+            } else {
+                noResults.classList.remove('show');
+            }
+        }
+
+        // Set up filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                // Update current filter
+                currentFilter = btn.dataset.filter;
+                // Apply filter
+                filterFavorites();
+            });
+        });
+
+        // Set up search input with debounce
+        let searchTimeout;
+        document.getElementById('search-input').addEventListener('input', () => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(filterFavorites, 150);
+        });
+    </script>
+</body>
+</html>
